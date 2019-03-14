@@ -1,0 +1,108 @@
+-- Canu snapshot v1.7 +45 changes (r8737 77ef9b49a590e90354404780f5ff962eace2cc66)
+--
+-- CITATIONS
+--
+-- Koren S, Walenz BP, Berlin K, Miller JR, Phillippy AM.
+-- Canu: scalable and accurate long-read assembly via adaptive k-mer weighting and repeat separation.
+-- Genome Res. 2017 May;27(5):722-736.
+-- http://doi.org/10.1101/gr.215087.116
+-- 
+-- Read and contig alignments during correction, consensus and GFA building use:
+--   Šošic M, Šikic M.
+--   Edlib: a C/C ++ library for fast, exact sequence alignment using edit distance.
+--   Bioinformatics. 2017 May 1;33(9):1394-1395.
+--   http://doi.org/10.1093/bioinformatics/btw753
+-- 
+--   Li H.
+--   Minimap and miniasm: fast mapping and de novo assembly for noisy long sequences.
+--   Bioinformatics. 2016 Jul 15;32(14):2103-10.
+--   http://doi.org/10.1093/bioinformatics/btw152
+-- 
+-- Corrected read consensus sequences are generated using an algorithm derived from FALCON-sense:
+--   Chin CS, et al.
+--   Phased diploid genome assembly with single-molecule real-time sequencing.
+--   Nat Methods. 2016 Dec;13(12):1050-1054.
+--   http://doi.org/10.1038/nmeth.4035
+-- 
+-- Contig consensus sequences are generated using an algorithm derived from pbdagcon:
+--   Chin CS, et al.
+--   Nonhybrid, finished microbial genome assemblies from long-read SMRT sequencing data.
+--   Nat Methods. 2013 Jun;10(6):563-9
+--   http://doi.org/10.1038/nmeth.2474
+-- 
+-- CONFIGURE CANU
+--
+-- Detected gnuplot version '4.2 patchlevel 6 ' (from 'gnuplot') and image format 'png'.
+-- Detected 4 CPUs and 31 gigabytes of memory.
+-- Limited to 4 CPUs from maxThreads option.
+-- Detected Sun Grid Engine in '/opt/gridengine/default'.
+-- User supplied Grid Engine environment '-pe smp THREADS'.
+-- User supplied Grid Engine consumable '-l h_vmem=MEMORY'.
+--
+-- WARNING:
+-- WARNING:  Queue 'cram.q' has start mode set to 'posix_behavior' and shell set to '/bin/csh'.
+-- WARNING:  Queue 'all.q' has start mode set to 'posix_behavior' and shell set to '/bin/csh'.
+-- WARNING:  Queue 'short.q' has start mode set to 'posix_behavior' and shell set to '/bin/csh'.
+-- WARNING:  Queue 'x10.q' has start mode set to 'posix_behavior' and shell set to '/bin/csh'.
+-- WARNING:  Queue 'long.q' has start mode set to 'posix_behavior' and shell set to '/bin/csh'.
+-- WARNING:
+-- WARNING:  Some queues in your configuration will fail to start jobs correctly.
+-- WARNING:  Jobs will be submitted with option:
+-- WARNING:    gridOptions=-S /bin/sh
+-- WARNING:
+-- WARNING:  If jobs fail to start, modify the above option to use a valid shell
+-- WARNING:  and supply it directly to canu.
+-- WARNING:
+-- 
+-- Found   8 hosts with  56 cores and  504 GB memory under Sun Grid Engine control.
+-- Found   4 hosts with  80 cores and  756 GB memory under Sun Grid Engine control.
+-- Found  20 hosts with  64 cores and  504 GB memory under Sun Grid Engine control.
+--
+--                     (tag)Threads
+--            (tag)Memory         |
+--        (tag)         |         |  algorithm
+--        -------  ------  --------  -----------------------------
+-- Grid:  meryl      8 GB    4 CPUs  (k-mer counting)
+-- Grid:  cormmap    6 GB    4 CPUs  (overlap detection with minimap)
+-- Grid:  obtmmap    6 GB    4 CPUs  (overlap detection with minimap)
+-- Grid:  utgmmap    6 GB    4 CPUs  (overlap detection with minimap)
+-- Grid:  ovb        4 GB    4 CPUs  (overlap store bucketizer)
+-- Grid:  ovs        8 GB    4 CPUs  (overlap store sorting)
+-- Grid:  red        4 GB    4 CPUs  (read error detection)
+-- Grid:  oea        4 GB    4 CPUs  (overlap error adjustment)
+-- Grid:  bat       28 GB    4 CPUs  (contig construction)
+-- Grid:  gfa        8 GB    4 CPUs  (GFA alignment and processing)
+--
+-- Found Nanopore uncorrected reads in the input files.
+--
+-- Generating assembly 'test' in '/share/ScratchGeneral/jamtor/projects/single_cell/nanopore/raw_files/FM/temp'
+--
+-- Parameters:
+--
+--  genomeSize        15000
+--
+--  Overlap Generation Limits:
+--    corOvlErrorRate 0.3200 ( 32.00%)
+--    obtOvlErrorRate 0.1440 ( 14.40%)
+--    utgOvlErrorRate 0.1440 ( 14.40%)
+--
+--  Overlap Processing Limits:
+--    corErrorRate    0.5000 ( 50.00%)
+--    obtErrorRate    0.1440 ( 14.40%)
+--    utgErrorRate    0.1440 ( 14.40%)
+--    cnsErrorRate    0.1920 ( 19.20%)
+----------------------------------------
+-- Starting command on Mon Mar  4 16:10:51 2019 with 6194.455 GB free disk space
+
+    cd /share/ScratchGeneral/jamtor/projects/single_cell/nanopore/raw_files/FM/temp
+    qsub \
+      -l h_vmem=8g \
+      -pe smp 1 \
+      -S /bin/sh  \
+      -cwd \
+      -N 'canu_test' \
+      -j y \
+      -o canu-scripts/canu.05.out canu-scripts/canu.05.sh
+
+-- Finished on Mon Mar  4 16:10:51 2019 (lickety-split) with 6194.455 GB free disk space
+----------------------------------------

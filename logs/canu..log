@@ -1,0 +1,98 @@
+-- Canu snapshot v1.7 +45 changes (r8737 77ef9b49a590e90354404780f5ff962eace2cc66)
+--
+-- CITATIONS
+--
+-- Koren S, Walenz BP, Berlin K, Miller JR, Phillippy AM.
+-- Canu: scalable and accurate long-read assembly via adaptive k-mer weighting and repeat separation.
+-- Genome Res. 2017 May;27(5):722-736.
+-- http://doi.org/10.1101/gr.215087.116
+-- 
+-- Read and contig alignments during correction, consensus and GFA building use:
+--   Šošic M, Šikic M.
+--   Edlib: a C/C ++ library for fast, exact sequence alignment using edit distance.
+--   Bioinformatics. 2017 May 1;33(9):1394-1395.
+--   http://doi.org/10.1093/bioinformatics/btw753
+-- 
+--   Li H.
+--   Minimap and miniasm: fast mapping and de novo assembly for noisy long sequences.
+--   Bioinformatics. 2016 Jul 15;32(14):2103-10.
+--   http://doi.org/10.1093/bioinformatics/btw152
+-- 
+-- Corrected read consensus sequences are generated using an algorithm derived from FALCON-sense:
+--   Chin CS, et al.
+--   Phased diploid genome assembly with single-molecule real-time sequencing.
+--   Nat Methods. 2016 Dec;13(12):1050-1054.
+--   http://doi.org/10.1038/nmeth.4035
+-- 
+-- Contig consensus sequences are generated using an algorithm derived from pbdagcon:
+--   Chin CS, et al.
+--   Nonhybrid, finished microbial genome assemblies from long-read SMRT sequencing data.
+--   Nat Methods. 2013 Jun;10(6):563-9
+--   http://doi.org/10.1038/nmeth.2474
+-- 
+-- CONFIGURE CANU
+--
+-- Detected gnuplot version '4.2 patchlevel 6 ' (from 'gnuplot') and image format 'png'.
+-- Detected 64 CPUs and 505 gigabytes of memory.
+-- Limited to 4 CPUs from maxThreads option.
+-- Detected Sun Grid Engine in '/opt/gridengine/default'.
+-- Grid engine disabled per useGrid=false option.
+--
+--                            (tag)Concurrency
+--                     (tag)Threads          |
+--            (tag)Memory         |          |
+--        (tag)         |         |          |     total usage     algorithm
+--        -------  ------  --------   --------  -----------------  -----------------------------
+-- Local: meryl      8 GB    4 CPUs x   1 job      8 GB    4 CPUs  (k-mer counting)
+-- Local: cormmap    6 GB    4 CPUs x   1 job      6 GB    4 CPUs  (overlap detection with minimap)
+-- Local: obtmmap    6 GB    4 CPUs x   1 job      6 GB    4 CPUs  (overlap detection with minimap)
+-- Local: utgmmap    6 GB    4 CPUs x   1 job      6 GB    4 CPUs  (overlap detection with minimap)
+-- Local: ovb        4 GB    4 CPUs x   1 job      4 GB    4 CPUs  (overlap store bucketizer)
+-- Local: ovs        8 GB    4 CPUs x   1 job      8 GB    4 CPUs  (overlap store sorting)
+-- Local: red        4 GB    4 CPUs x   1 job      4 GB    4 CPUs  (read error detection)
+-- Local: oea        4 GB    4 CPUs x   1 job      4 GB    4 CPUs  (overlap error adjustment)
+-- Local: bat       28 GB    4 CPUs x   1 job     28 GB    4 CPUs  (contig construction)
+-- Local: gfa        8 GB    4 CPUs x   1 job      8 GB    4 CPUs  (GFA alignment and processing)
+--
+-- Found Nanopore uncorrected reads in the input files.
+--
+-- Generating assembly 'test' in '/share/ScratchGeneral/jamtor/projects/single_cell/nanopore/raw_files/FM/temp/canu'
+--
+-- Parameters:
+--
+--  genomeSize        15000
+--
+--  Overlap Generation Limits:
+--    corOvlErrorRate 0.3200 ( 32.00%)
+--    obtOvlErrorRate 0.1440 ( 14.40%)
+--    utgOvlErrorRate 0.1440 ( 14.40%)
+--
+--  Overlap Processing Limits:
+--    corErrorRate    0.5000 ( 50.00%)
+--    obtErrorRate    0.1440 ( 14.40%)
+--    utgErrorRate    0.1440 ( 14.40%)
+--    cnsErrorRate    0.1920 ( 19.20%)
+--
+--
+-- BEGIN CORRECTION
+--
+-- WARNING:
+-- WARNING:  Previously failed gkpStore detected.
+-- WARNING:
+    /share/ClusterShare/software/contrib/marsmi/nanopore/canu/Linux-amd64/bin/gatekeeperDumpMetaData \
+      -G ./test.gkpStore \
+      -libs \
+    > ./test.gkpStore/libraries.txt \
+    2> /dev/null
+
+ERROR:
+ERROR:  Failed with exit code 1.  (rc=256)
+ERROR:
+
+ABORT:
+ABORT: Canu snapshot v1.7 +45 changes (r8737 77ef9b49a590e90354404780f5ff962eace2cc66)
+ABORT: Don't panic, but a mostly harmless error occurred and Canu stopped.
+ABORT: Try restarting.  If that doesn't work, ask for help.
+ABORT:
+ABORT:   failed to generate list of libraries in store.
+ABORT:
