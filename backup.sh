@@ -11,5 +11,5 @@ ssh jt3341@raijin.nci.org.au "cd $nci_dir; tar -zcvf scripts.tar.gz scripts; mds
 
 cd $wp_dir/scripts
 git add -A
-git commit
+git commit -m "regular"
 git push

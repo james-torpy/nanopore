@@ -76,3 +76,9 @@ cp $DRAFT fasta/${T_READS%*.fastq}_contigs_racon.${SGE_TASK_ID}.fa
 #
 #echo "All done! Usage: "
 #qstat -j ${JOB_ID} | grep usage#
+
+#######################
+#/share/ScratchGeneral/jamtor/local/lib/racon/build/bin/racon -w 200 -m 8 -x -1 -g -4 \
+# -t 4 -q -1 \
+#/share/ScratchGeneral/jamtor/projects/single_cell/nanopore/FM/subset/ramos.103_edited.fastq \
+#/share/ScratchGeneral/jamtor/projects/single_cell/nanopore/FM/subset/paf/ramos.103_paf.01.4.paf /share/ScratchGeneral/jamtor/projects/single_cell/nanopore/FM/subset/ramos.103.fastq  > /share/ScratchGeneral/jamtor/projects/single_cell/nanopore/FM/subset/fasta/ramos.103_contigs_racon.4.fa
