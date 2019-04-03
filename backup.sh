@@ -3,7 +3,7 @@
 nci_dir="/g/data1a/ku3/jt3341/projects/single_cell/nanopore"
 wp_dir="/share/ScratchGeneral/jamtor/projects/single_cell/nanopore"
 mdss_dir="jt3341/projects/single_cell/nanopore"
-ssh jt3341@raijin.nci.org.au "mkdir -p $nci_dir/scripts"
+ssh jt3341@raijin.nci.org.au "mkdir -p $nci_dir/scripts; mdss mkdir -p $mdss_dir"
 
 rsync -avPS $wp_dir/scripts/* jt3341@raijin.nci.org.au:$nci_dir/scripts
 
